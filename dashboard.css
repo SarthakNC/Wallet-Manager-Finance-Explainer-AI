@@ -1276,12 +1276,8 @@
         justify-content: center;
     }
 
-    .header-actions .btn span {
-        display: none;
-    }
-
     .header-actions .btn .btn-icon-left {
-        margin-right: 0;
+        margin-right: 0.25rem;
     }
 
     .kpi-grid {
