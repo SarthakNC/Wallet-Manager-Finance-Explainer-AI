@@ -1,6 +1,5 @@
-// Dynamically set API URL based on current hostname
-// This allows the app to work on mobile devices on the same network
-const API_URL = `http://${window.location.hostname}:5000/api/auth`;
+// Production API URL (Render.com)
+const API_URL = 'https://wallet-manager-finance-explainer-ai-n38r.onrender.com/api/auth';
 
 // Toggle Password Visibility
 document.querySelectorAll('.toggle-password').forEach(button => {

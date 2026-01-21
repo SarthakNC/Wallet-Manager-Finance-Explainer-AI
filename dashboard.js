@@ -15,8 +15,8 @@ const subcategories = {
 };
 
 // ===== API Configuration =====
-// Dynamically set API URL based on current hostname for mobile compatibility
-const API_BASE_URL = `http://${window.location.hostname}:5000/api`;
+// Production API URL (Render.com)
+const API_BASE_URL = 'https://wallet-manager-finance-explainer-ai-n38r.onrender.com/api';
 
 function getAuthToken() {
     return localStorage.getItem('token');
