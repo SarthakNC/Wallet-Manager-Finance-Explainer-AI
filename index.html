@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="AI Expense Explainer - Upload your expenses and let AI explain your money habits, detect waste, and help you save smarter."
+        />
+        <title>
+            AI Expense Explainer | Understand Your Spending Like Never Before
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <img
+                        src="assets/logo.png"
+                        alt="ExpenseAI"
+                        class="logo-icon"
+                    />
+                    <span class="logo-text">ExpenseAI</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#security">Security</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button
+                        class="theme-toggle"
+                        id="themeToggle"
+                        aria-label="Toggle dark mode"
+                    >
+                        <img
+                            src="assets/icon-sun.png"
+                            alt=""
+                            class="theme-icon light-icon"
+                        />
+                        <img
+                            src="assets/icon-moon.png"
+                            alt=""
+                            class="theme-icon dark-icon"
+                        />
+                    </button>
+                    <a href="login.html" class="btn btn-ghost">Login</a>
+                    <a href="signup.html" class="btn btn-primary"
+                        >Get Started</a
+                    >
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#security">Security</a></li>
+                <li>
+                    <a href="signup.html" class="btn btn-primary"
+                        >Get Started</a
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-bg">
+                <div class="gradient-orb orb-1"></div>
+                <div class="gradient-orb orb-2"></div>
+                <div class="gradient-orb orb-3"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <img
+                            src="assets/icon-sparkle.png"
+                            alt=""
+                            class="badge-icon"
+                        />
+                        <span>Powered by Advanced AI</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Understand Your Spending
+                        <span class="gradient-text">Like Never Before</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Upload your expenses and let AI explain your money
+                        habits, detect waste, and help you save smarter.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="signup.html" class="btn btn-primary btn-lg"
+                            ><span>Get Started</span
+                            ><img
+                                src="assets/icon-arrow-right.png"
+                                alt=""
+                                class="btn-icon"
+                        /></a>
+                        <a href="#" class="btn btn-secondary btn-lg"
+                            ><img
+                                src="assets/icon-upload.png"
+                                alt=""
+                                class="btn-icon-left"
+                            /><span>Upload Expenses</span></a
+                        >
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-preview-card">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="preview-title">AI Analysis</span>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-chart">
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 60%"
+                                ></div>
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 80%"
+                                ></div>
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 45%"
+                                ></div>
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 90%"
+                                ></div>
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 70%"
+                                ></div>
+                                <div
+                                    class="chart-bar"
+                                    style="--height: 55%"
+                                ></div>
+                            </div>
+                            <div class="preview-insight">
+                                <img
+                                    src="assets/icon-brain.png"
+                                    alt=""
+                                    class="insight-icon"
+                                />
+                                <p>Food spending up 28%...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-1">
+                        <img
+                            src="assets/icon-chart.png"
+                            alt=""
+                            class="card-icon"
+                        /><span>Real-time tracking</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <img
+                            src="assets/icon-bulb.png"
+                            alt=""
+                            class="card-icon"
+                        /><span>Smart suggestions</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <img
+                            src="assets/icon-bell.png"
+                            alt=""
+                            class="card-icon"
+                        /><span>Instant alerts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Simple Process</span>
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">
+                        Get started in minutes with our simple 4-step process
+                    </p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card" data-step="1">
+                        <div class="step-number">01</div>
+                        <img
+                            src="assets/icon-upload.png"
+                            alt=""
+                            class="step-icon"
+                        />
+                        <h3>Upload Your Expenses</h3>
+                        <p>
+                            Import bank statements, CSVs, or connect your
+                            accounts directly
+                        </p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-card" data-step="2">
+                        <div class="step-number">02</div>
+                        <img
+                            src="assets/icon-robot.png"
+                            alt=""
+                            class="step-icon"
+                        />
+                        <h3>AI Analyzes Data</h3>
+                        <p>
+                            Our AI categorizes & analyzes every transaction
+                            instantly
+                        </p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-card" data-step="3">
+                        <div class="step-number">03</div>
+                        <img
+                            src="assets/icon-chat.png"
+                            alt=""
+                            class="step-icon"
+                        />
+                        <h3>Get Human-like Insights</h3>
+                        <p>
+                            Receive personalized explanations in simple language
+                        </p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-card" data-step="4">
+                        <div class="step-number">04</div>
+                        <img
+                            src="assets/icon-money.png"
+                            alt=""
+                            class="step-icon"
+                        />
+                        <h3>Save More Money</h3>
+                        <p>Follow AI suggestions and watch your savings grow</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Features</span>
+                    <h2 class="section-title">Why Choose ExpenseAI?</h2>
+                    <p class="section-subtitle">
+                        Powerful features that make money management effortless
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-search.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Smart AI Analysis</h3>
+                        <p>
+                            Explains your spending patterns in simple,
+                            easy-to-understand language
+                        </p>
+                    </div>
+                    <div class="feature-card featured">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-chart.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Interactive Dashboard</h3>
+                        <p>
+                            Beautiful charts, trends, and visualizations of your
+                            financial data
+                        </p>
+                        <span class="popular-badge">Most Popular</span>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-warning.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Waste Detection</h3>
+                        <p>
+                            Automatically identifies unnecessary or duplicate
+                            spending
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-bulb.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Personalized Tips</h3>
+                        <p>
+                            Get custom saving suggestions based on your unique
+                            habits
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-document.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Report Generator</h3>
+                        <p>
+                            Download detailed monthly AI-generated financial
+                            reports
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <img
+                                src="assets/icon-bell.png"
+                                alt=""
+                                class="feature-icon"
+                            />
+                        </div>
+                        <h3>Smart Alerts</h3>
+                        <p>
+                            Get notified about unusual spending patterns
+                            instantly
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Insight WOW Section -->
+        <section class="ai-insight" id="ai-insight">
+            <div class="container">
+                <div class="ai-insight-wrapper">
+                    <div class="ai-insight-content">
+                        <span class="section-badge">See The Magic</span>
+                        <h2 class="section-title">
+                            Experience AI-Powered Insights
+                        </h2>
+                        <p class="section-subtitle">
+                            This is what makes users go WOW!
+                        </p>
+                    </div>
+                    <div class="ai-insight-card">
+                        <div class="insight-header">
+                            <div class="ai-avatar">
+                                <img src="assets/icon-brain.png" alt="" />
+                            </div>
+                            <div class="ai-info">
+                                <span class="ai-name">AI Insight</span
+                                ><span class="ai-time">Just now</span>
+                            </div>
+                            <div class="insight-badge">New</div>
+                        </div>
+                        <div class="insight-body">
+                            <p class="insight-text" id="typewriterText"></p>
+                            <div class="insight-stats">
+                                <div class="insight-stat">
+                                    <img
+                                        src="assets/icon-trending-up.png"
+                                        alt=""
+                                        class="stat-icon"
+                                    /><span class="stat-value">+28%</span
+                                    ><span class="stat-label"
+                                        >Food spending</span
+                                    >
+                                </div>
+                                <div class="insight-stat">
+                                    <img
+                                        src="assets/icon-moon.png"
+                                        alt=""
+                                        class="stat-icon"
+                                    /><span class="stat-value">8</span
+                                    ><span class="stat-label">Late orders</span>
+                                </div>
+                                <div class="insight-stat highlight">
+                                    <img
+                                        src="assets/icon-money.png"
+                                        alt=""
+                                        class="stat-icon"
+                                    /><span class="stat-value">₹1,200</span
+                                    ><span class="stat-label"
+                                        >Potential savings</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insight-actions">
+                            <button class="action-btn primary">
+                                <span>View Details</span></button
+                            ><button class="action-btn">
+                                <span>Set Reminder</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Is This For -->
+        <section class="target-users" id="target-users">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">For Everyone</span>
+                    <h2 class="section-title">Who Is This For?</h2>
+                    <p class="section-subtitle">
+                        Perfect for anyone who wants better control over their
+                        finances
+                    </p>
+                </div>
+                <div class="users-grid">
+                    <div class="user-card">
+                        <img
+                            src="assets/icon-student.png"
+                            alt=""
+                            class="user-icon"
+                        />
+                        <h3>Students</h3>
+                        <p>
+                            Track pocket money & manage college expenses wisely
+                        </p>
+                    </div>
+                    <div class="user-card">
+                        <img
+                            src="assets/icon-briefcase.png"
+                            alt=""
+                            class="user-icon"
+                        />
+                        <h3>Professionals</h3>
+                        <p>Optimize salary spending & maximize savings</p>
+                    </div>
+                    <div class="user-card">
+                        <img
+                            src="assets/icon-home.png"
+                            alt=""
+                            class="user-icon"
+                        />
+                        <h3>Families</h3>
+                        <p>Manage household budget & plan for the future</p>
+                    </div>
+                    <div class="user-card">
+                        <img
+                            src="assets/icon-laptop.png"
+                            alt=""
+                            class="user-icon"
+                        />
+                        <h3>Freelancers</h3>
+                        <p>Track variable income & manage irregular expenses</p>
+                    </div>
+                    <div class="user-card">
+                        <img
+                            src="assets/icon-chart.png"
+                            alt=""
+                            class="user-icon"
+                        />
+                        <h3>Small Businesses</h3>
+                        <p>Monitor business expenses & improve profitability</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview -->
+        <section class="dashboard-preview" id="dashboard">
+            <div class="container">
+                <div class="dashboard-wrapper">
+                    <div class="dashboard-content">
+                        <span class="section-badge">Dashboard</span>
+                        <h2 class="section-title">
+                            See Your Money Habits Visually
+                        </h2>
+                        <p class="section-subtitle">
+                            Our AI-powered dashboard transforms complex
+                            financial data into beautiful, actionable insights
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>
+                                <img
+                                    src="assets/icon-check.png"
+                                    alt=""
+                                    class="check-icon"
+                                /><span>Real-time expense tracking</span>
+                            </li>
+                            <li>
+                                <img
+                                    src="assets/icon-check.png"
+                                    alt=""
+                                    class="check-icon"
+                                /><span>Category-wise breakdown</span>
+                            </li>
+                            <li>
+                                <img
+                                    src="assets/icon-check.png"
+                                    alt=""
+                                    class="check-icon"
+                                /><span>Monthly comparison charts</span>
+                            </li>
+                            <li>
+                                <img
+                                    src="assets/icon-check.png"
+                                    alt=""
+                                    class="check-icon"
+                                /><span>Goal progress tracking</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-lg"
+                            ><span>Explore Dashboard</span
+                            ><img
+                                src="assets/icon-arrow-right.png"
+                                alt=""
+                                class="btn-icon"
+                        /></a>
+                    </div>
+                    <div class="dashboard-mockup">
+                        <div class="mockup-frame">
+                            <div class="mockup-header">
+                                <div class="mockup-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mockup-sidebar">
+                                    <div class="sidebar-item active"></div>
+                                    <div class="sidebar-item"></div>
+                                    <div class="sidebar-item"></div>
+                                    <div class="sidebar-item"></div>
+                                </div>
+                                <div class="mockup-main">
+                                    <div class="mockup-cards">
+                                        <div class="mini-card">
+                                            <img
+                                                src="assets/icon-wallet.png"
+                                                alt=""
+                                                class="mini-icon"
+                                            />
+                                            <div class="mini-info">
+                                                <span class="mini-label"
+                                                    >Balance</span
+                                                ><span class="mini-value"
+                                                    >₹45,230</span
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="mini-card">
+                                            <img
+                                                src="assets/icon-trending-up.png"
+                                                alt=""
+                                                class="mini-icon"
+                                            />
+                                            <div class="mini-info">
+                                                <span class="mini-label"
+                                                    >Savings</span
+                                                ><span class="mini-value"
+                                                    >₹12,500</span
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="mini-card">
+                                            <img
+                                                src="assets/icon-trending-down.png"
+                                                alt=""
+                                                class="mini-icon"
+                                            />
+                                            <div class="mini-info">
+                                                <span class="mini-label"
+                                                    >Expenses</span
+                                                ><span class="mini-value"
+                                                    >₹28,400</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-chart">
+                                        <div class="chart-line"></div>
+                                        <div class="chart-bars">
+                                            <div
+                                                class="bar"
+                                                style="--h: 40%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 65%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 45%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 80%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 55%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 70%"
+                                            ></div>
+                                            <div
+                                                class="bar"
+                                                style="--h: 50%"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-categories">
+                                        <div class="category">
+                                            <span
+                                                class="cat-color"
+                                                style="--c: #10b981"
+                                            ></span
+                                            ><span>Food</span>
+                                        </div>
+                                        <div class="category">
+                                            <span
+                                                class="cat-color"
+                                                style="--c: #f59e0b"
+                                            ></span
+                                            ><span>Shopping</span>
+                                        </div>
+                                        <div class="category">
+                                            <span
+                                                class="cat-color"
+                                                style="--c: #ef4444"
+                                            ></span
+                                            ><span>Bills</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Security -->
+        <section class="security" id="security">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Your Privacy Matters</span>
+                    <h2 class="section-title">Trust & Security</h2>
+                    <p class="section-subtitle">
+                        Your financial data is protected with enterprise-grade
+                        security
+                    </p>
+                </div>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <img
+                            src="assets/icon-lock.png"
+                            alt=""
+                            class="security-icon"
+                        />
+                        <h3>Bank-Level Security</h3>
+                        <p>256-bit encryption protects all your data</p>
+                    </div>
+                    <div class="security-card">
+                        <img
+                            src="assets/icon-shield.png"
+                            alt=""
+                            class="security-icon"
+                        />
+                        <h3>100% Private</h3>
+                        <p>Your financial data stays completely private</p>
+                    </div>
+                    <div class="security-card">
+                        <img
+                            src="assets/icon-folder.png"
+                            alt=""
+                            class="security-icon"
+                        />
+                        <h3>No Data Sharing</h3>
+                        <p>
+                            We never sell or share your data with third parties
+                        </p>
+                    </div>
+                    <div class="security-card">
+                        <img
+                            src="assets/icon-robot.png"
+                            alt=""
+                            class="security-icon"
+                        />
+                        <h3>AI-Powered Only</h3>
+                        <p>Only AI analyzes your data, no human access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta" id="cta">
+            <div class="container">
+                <div class="cta-wrapper">
+                    <div class="cta-bg">
+                        <div class="cta-orb orb-1"></div>
+                        <div class="cta-orb orb-2"></div>
+                    </div>
+                    <div class="cta-content">
+                        <h2>Ready to Understand Your Money Better?</h2>
+                        <p>
+                            Join thousands of users who have transformed their
+                            financial habits with AI
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-white btn-lg"
+                                ><span>Start Free</span
+                                ><img
+                                    src="assets/icon-arrow-right.png"
+                                    alt=""
+                                    class="btn-icon"
+                            /></a>
+                            <a href="#" class="btn btn-outline-white btn-lg"
+                                ><img
+                                    src="assets/icon-upload.png"
+                                    alt=""
+                                    class="btn-icon-left"
+                                /><span>Upload Now</span></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <img
+                                src="assets/logo.png"
+                                alt="ExpenseAI"
+                                class="logo-icon"
+                            />
+                            <span class="logo-text">ExpenseAI</span>
+                        </a>
+                        <p>
+                            Making money management smarter with artificial
+                            intelligence.
+                        </p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <span class="divider">|</span>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2026 ExpenseAI. All rights reserved. | Resume
+                        Project by Sarthak Chumbalkar
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>

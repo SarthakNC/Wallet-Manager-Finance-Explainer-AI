@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="ExpenseAI Dashboard - Track your expenses, view AI insights, and manage your finances."
+        />
+        <title>Dashboard | ExpenseAI</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="dashboard.css" />
+    </head>
+
+    <body class="dashboard-page">
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img
+                        src="assets/logo.png"
+                        alt="ExpenseAI"
+                        class="logo-icon"
+                    />
+                    <span class="logo-text">ExpenseAI</span>
+                </a>
+                <div class="nav-buttons">
+                    <button
+                        class="theme-toggle"
+                        id="themeToggle"
+                        aria-label="Toggle dark mode"
+                    >
+                        <img
+                            src="assets/icon-sun.png"
+                            alt=""
+                            class="theme-icon light-icon"
+                        />
+                        <img
+                            src="assets/icon-moon.png"
+                            alt=""
+                            class="theme-icon dark-icon"
+                        />
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-btn" id="userMenuBtn">
+                            <img
+                                src="assets/icon-user.png"
+                                alt=""
+                                class="user-avatar"
+                            />
+                            <span class="user-name">User</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icon-user.png" alt="" />
+                                <span>Profile</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="logoutBtn">
+                                <img src="assets/icon-arrow-right.png" alt="" />
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-container">
+                <!-- Dashboard Header -->
+                <div class="dashboard-header">
+                    <div class="header-content">
+                        <h1>
+                            Welcome back,
+                            <span class="user-greeting">User</span>!
+                        </h1>
+                        <p>
+                            Here's your financial overview for
+                            <span id="selectedMonthName">this month</span>
+                        </p>
+                    </div>
+                    <div class="month-selector-wrapper">
+                        <div class="month-selector">
+                            <img
+                                src="assets/icon-chart.png"
+                                alt=""
+                                class="month-icon"
+                            />
+                            <select id="monthSelect" class="month-dropdown">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button
+                            class="btn btn-secondary"
+                            id="downloadReportBtn"
+                            title="Download Monthly Report"
+                        >
+                            <img
+                                src="assets/icon-document.png"
+                                alt=""
+                                class="btn-icon-left"
+                            />
+                            <span>Download Report</span>
+                        </button>
+                        <button class="btn btn-success" id="addIncomeBtn">
+                            <img
+                                src="assets/icon-wallet.png"
+                                alt=""
+                                class="btn-icon-left"
+                            />
+                            <span>Add Income</span>
+                        </button>
+                        <button
+                            class="btn btn-outline-success"
+                            id="editIncomeBtn"
+                            style="display: none"
+                        >
+                            <img
+                                src="assets/icon-document.png"
+                                alt=""
+                                class="btn-icon-left"
+                            />
+                            <span>Edit Income</span>
+                        </button>
+                        <button class="btn btn-primary" id="addExpenseBtn">
+                            <img
+                                src="assets/icon-money.png"
+                                alt=""
+                                class="btn-icon-left"
+                            />
+                            <span>Add Expense</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <section class="kpi-section">
+                    <div class="kpi-grid">
+                        <!-- Total Income Card -->
+                        <div
+                            class="kpi-card income-card clickable"
+                            id="incomeCard"
+                            title="Click to edit income"
+                        >
+                            <div class="kpi-icon-wrapper success">
+                                <img
+                                    src="assets/icon-wallet.png"
+                                    alt=""
+                                    class="kpi-icon"
+                                />
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Total Income</span>
+                                <span class="kpi-value success" id="kpiIncome"
+                                    >₹0</span
+                                >
+                                <span class="kpi-sub" id="kpiIncomeSub"
+                                    >Set your monthly income</span
+                                >
+                            </div>
+                            <div class="kpi-edit-hint">
+                                <img
+                                    src="assets/icon-document.png"
+                                    alt=""
+                                    class="edit-hint-icon"
+                                />
+                                <span>Edit</span>
+                            </div>
+                        </div>
+                        <!-- Total Spent Card -->
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrapper">
+                                <img
+                                    src="assets/icon-money.png"
+                                    alt=""
+                                    class="kpi-icon"
+                                />
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Total Spent</span>
+                                <span class="kpi-value" id="kpiThisMonth"
+                                    >₹0</span
+                                >
+                            </div>
+                        </div>
+                        <!-- Remaining Balance Card -->
+                        <div class="kpi-card balance-card">
+                            <div
+                                class="kpi-icon-wrapper"
+                                id="balanceIconWrapper"
+                            >
+                                <img
+                                    src="assets/icon-trending-up.png"
+                                    alt=""
+                                    class="kpi-icon"
+                                />
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Remaining Balance</span>
+                                <span class="kpi-value" id="kpiBalance"
+                                    >₹0</span
+                                >
+                                <span class="kpi-sub" id="kpiBalanceSub"></span>
+                            </div>
+                        </div>
+                        <!-- Biggest Category -->
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrapper warning">
+                                <img
+                                    src="assets/icon-chart.png"
+                                    alt=""
+                                    class="kpi-icon"
+                                />
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Biggest Category</span>
+                                <span class="kpi-value" id="kpiBiggestCategory"
+                                    >--</span
+                                >
+                                <span
+                                    class="kpi-sub"
+                                    id="kpiBiggestCategorySub"
+                                ></span>
+                            </div>
+                        </div>
+                        <!-- Avg Daily Spend -->
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrapper accent">
+                                <img
+                                    src="assets/icon-trending-up.png"
+                                    alt=""
+                                    class="kpi-icon"
+                                />
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Avg Daily Spend</span>
+                                <span class="kpi-value" id="kpiAvgDaily"
+                                    >₹0</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    <div class="charts-grid">
+                        <!-- Pie Chart -->
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Category Distribution</h3>
+                                <span class="chart-period">This Month</span>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="categoryPieChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Line Chart -->
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Daily Spending</h3>
+                                <span class="chart-period">This Month</span>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="monthlyLineChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Bar Chart -->
+                        <div class="chart-card full-width">
+                            <div class="chart-header">
+                                <h3>Top Expenses</h3>
+                                <span class="chart-period">This Month</span>
+                            </div>
+                            <div class="chart-body bar-chart-body">
+                                <canvas id="categoryBarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Insight Panel -->
+                <section class="ai-insight-section">
+                    <div class="insight-card">
+                        <div class="insight-header">
+                            <div class="ai-avatar">
+                                <img src="assets/icon-brain.png" alt="" />
+                            </div>
+                            <div class="ai-info">
+                                <span class="ai-name"
+                                    >AI Financial Insights</span
+                                >
+                                <span class="ai-time" id="aiTime"
+                                    >Waiting for data...</span
+                                >
+                            </div>
+                            <button
+                                class="btn btn-sm btn-secondary"
+                                id="refreshAiBtn"
+                                title="Refresh AI Insights"
+                            >
+                                <img
+                                    src="assets/icon-chart.png"
+                                    alt=""
+                                    class="btn-icon-left"
+                                />
+                                <span>Analyze</span>
+                            </button>
+                        </div>
+                        <div class="insight-body" id="insightBody">
+                            <div class="empty-state" id="aiEmptyState">
+                                <img
+                                    src="assets/icon-brain.png"
+                                    alt=""
+                                    class="empty-icon"
+                                />
+                                <h4>No Insights Yet</h4>
+                                <p>
+                                    Click "Analyze" to get AI-powered financial
+                                    insights, spending alerts, and saving
+                                    suggestions.
+                                </p>
+                            </div>
+                            <div
+                                class="ai-loading"
+                                id="aiLoading"
+                                style="display: none"
+                            >
+                                <div class="loading-spinner"></div>
+                                <p>Analyzing your finances...</p>
+                            </div>
+                            <div
+                                class="ai-content"
+                                id="aiContent"
+                                style="display: none"
+                            >
+                                <!-- AI response will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Expense Table Section -->
+                <section class="expenses-section">
+                    <div class="section-header-row">
+                        <h2>Recent Expenses</h2>
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <img
+                                    src="assets/icon-search.png"
+                                    alt=""
+                                    class="search-icon"
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Search expenses..."
+                                    id="expenseSearch"
+                                />
+                            </div>
+                            <button
+                                class="btn btn-secondary btn-sm"
+                                id="downloadReportBtn2"
+                            >
+                                <img
+                                    src="assets/icon-document.png"
+                                    alt=""
+                                    class="btn-icon-left"
+                                />
+                                <span>Download Report</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="expense-table" id="expenseTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Note</th>
+                                    <th>Source</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expenseTableBody">
+                                <tr class="empty-row">
+                                    <td colspan="6">
+                                        <div class="table-empty-state">
+                                            <img
+                                                src="assets/icon-document.png"
+                                                alt=""
+                                                class="empty-icon"
+                                            />
+                                            <p>
+                                                No expenses added yet. Click
+                                                "Add Expense" to get started!
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footer">
+                        <span class="showing-info" id="showingInfo"
+                            >No expenses yet</span
+                        >
+                        <div class="pagination" id="pagination">
+                            <!-- Pagination will be added dynamically -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Add Expense Modal -->
+        <div class="modal" id="addExpenseModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Expense</h2>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <form class="expense-form" id="expenseForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expenseDate">Date</label>
+                            <input type="date" id="expenseDate" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="expenseAmount">Amount (₹)</label>
+                            <input
+                                type="number"
+                                id="expenseAmount"
+                                placeholder="0.00"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expenseCategory">Category</label>
+                            <select id="expenseCategory" required>
+                                <option value="">Select category</option>
+                                <option value="food">Food & Dining</option>
+                                <option value="transportation">
+                                    Transportation
+                                </option>
+                                <option value="shopping">Shopping</option>
+                                <option value="bills">Bills & Utilities</option>
+                                <option value="entertainment">
+                                    Entertainment
+                                </option>
+                                <option value="health">Health & Fitness</option>
+                                <option value="education">Education</option>
+                                <option value="travel">Travel</option>
+                                <option value="subscriptions">
+                                    Subscriptions
+                                </option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div
+                            class="form-group"
+                            id="subcategoryGroup"
+                            style="display: none"
+                        >
+                            <label for="expenseSubcategory">Subcategory</label>
+                            <select id="expenseSubcategory">
+                                <option value="">Select subcategory</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseNote">Note</label>
+                        <textarea
+                            id="expenseNote"
+                            placeholder="Add a note..."
+                        ></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelExpense"
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Add Expense
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Income Modal -->
+        <div class="modal" id="addIncomeModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add Monthly Income</h2>
+                    <button class="modal-close" id="closeIncomeModal">
+                        &times;
+                    </button>
+                </div>
+                <form class="expense-form" id="incomeForm">
+                    <div class="form-group">
+                        <label for="incomeMonth">Month</label>
+                        <input type="month" id="incomeMonth" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeAmount">Total Income (₹)</label>
+                        <input
+                            type="number"
+                            id="incomeAmount"
+                            placeholder="Enter your monthly income"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeNote">Note (optional)</label>
+                        <textarea
+                            id="incomeNote"
+                            placeholder="E.g., Salary, Freelance, etc."
+                        ></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelIncome"
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Save Income
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Expense Modal -->
+        <div class="modal" id="editExpenseModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Expense</h2>
+                    <button class="modal-close" id="closeEditModal">
+                        &times;
+                    </button>
+                </div>
+                <form class="expense-form" id="editExpenseForm">
+                    <input type="hidden" id="editExpenseId" />
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editExpenseDate">Date</label>
+                            <input type="date" id="editExpenseDate" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="editExpenseAmount">Amount (₹)</label>
+                            <input
+                                type="number"
+                                id="editExpenseAmount"
+                                placeholder="0.00"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editExpenseCategory">Category</label>
+                            <select id="editExpenseCategory" required>
+                                <option value="">Select category</option>
+                                <option value="food">Food & Dining</option>
+                                <option value="transportation">
+                                    Transportation
+                                </option>
+                                <option value="shopping">Shopping</option>
+                                <option value="bills">Bills & Utilities</option>
+                                <option value="entertainment">
+                                    Entertainment
+                                </option>
+                                <option value="health">Health & Fitness</option>
+                                <option value="education">Education</option>
+                                <option value="travel">Travel</option>
+                                <option value="subscriptions">
+                                    Subscriptions
+                                </option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div
+                            class="form-group"
+                            id="editSubcategoryGroup"
+                            style="display: none"
+                        >
+                            <label for="editExpenseSubcategory"
+                                >Subcategory</label
+                            >
+                            <select id="editExpenseSubcategory">
+                                <option value="">Select subcategory</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editExpenseNote">Note</label>
+                        <textarea
+                            id="editExpenseNote"
+                            placeholder="Add a note..."
+                        ></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelEditExpense"
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Income Modal -->
+        <div class="modal" id="editIncomeModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Income</h2>
+                    <button class="modal-close" id="closeEditIncomeModal">
+                        &times;
+                    </button>
+                </div>
+                <form class="expense-form" id="editIncomeForm">
+                    <input type="hidden" id="editIncomeId" />
+                    <div class="form-group">
+                        <label for="editIncomeMonth">Month</label>
+                        <input
+                            type="month"
+                            id="editIncomeMonth"
+                            required
+                            disabled
+                        />
+                        <small class="form-hint">Month cannot be changed</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIncomeAmount">Total Income (₹)</label>
+                        <input
+                            type="number"
+                            id="editIncomeAmount"
+                            placeholder="Enter your monthly income"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="editIncomeNote">Note (optional)</label>
+                        <textarea
+                            id="editIncomeNote"
+                            placeholder="E.g., Salary, Freelance, etc."
+                        ></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            id="deleteIncomeBtn"
+                        >
+                            Delete Income
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelEditIncome"
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script src="dashboard.js"></script>
+    </body>
+</html>
