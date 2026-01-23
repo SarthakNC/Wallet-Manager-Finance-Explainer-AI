@@ -1,5 +1,5 @@
-// Production API URL (Render.com)
-const API_URL = 'https://wallet-manager-finance-explainer-ai-n38r.onrender.com/api/auth';
+// Local API URL
+const API_URL = 'http://localhost:5000/api/auth';
 
 // Toggle Password Visibility
 document.querySelectorAll('.toggle-password').forEach(button => {

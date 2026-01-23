@@ -15,8 +15,8 @@ const subcategories = {
 };
 
 // ===== API Configuration =====
-// Production API URL (Render.com)
-const API_BASE_URL = 'https://wallet-manager-finance-explainer-ai-n38r.onrender.com/api';
+// Local API URL
+const API_BASE_URL = 'http://localhost:5000/api';
 
 function getAuthToken() {
     return localStorage.getItem('token');
